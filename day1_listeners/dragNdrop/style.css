@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html {
+    width: 100%;
+    height: 100%;
+    background-image: url("img/restaurant.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position-y: -300px;
+;
+}
+
+body {
+    width: auto;
+    height: auto;
+    background-color: rgba(21, 21, 21, 0.628);
+    padding: 30px;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1,
+h2 {
+    color: bisque;
+    margin: 0px;
+    width: 500px;
+}
+
+h1 {
+    font-weight: 900;
+    font-size: 48px;
+    color: rgb(96 171 86);
+}
+
+#menu {
+    width: fit-content;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+#tabs {
+    display: flex;
+    cursor: pointer;
+}
+
+#tabs div {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 0px 20px 0px 20px;
+    background-color: rgba(255, 228, 196, 0.616);
+    color: rgb(130, 85, 30);
+    font-weight: 700;
+}
+
+#tabs div p {
+    margin: 10px 10px 8px;
+}
+
+#tab_menu, #tab_gallery, #tab_dessert, #tab_drink {
+    border-bottom: 2px solid #ffe4c426;
+}
+
+#page_menu {
+    background-color: rgba(255, 228, 196, 0.616);
+    border-radius: 0px 0px 10px 10px;
+    width: 720px;
+}
+
+.page_menu_content {
+    margin: 0;
+    padding: 20px;
+    display: none;
+}
+
+#page_menu_content_accueil {
+    display: block;
+}
+
+.page_menu_content h3 {
+    font-size: 36px;
+    margin: 0px;
+    color: rgb(130, 85, 30);
+}
+
+#page_menu img {
+    width: 100%;
+    margin: 20px 0px;
+}
+
+#update_menu_btn {
+    background-color: seagreen;
+    width: fit-content;
+    padding: 0px 10px;
+    font-weight: 800;
+    color: floralwhite;
+    margin: 0px 10px;
+    cursor: pointer;
+    height: 22px;
+}
+
+#update_menu_btn p {
+    margin: 0;
+    line-height: 22px;
+    font-size: 12px;
+}
+
+#flex_title {
+    display: flex;
+}
+
+#flex_title p {
+    margin: 0;
+}
+
+#popup_bg {
+    display: none;
+}
+
+#popup_bg {
+    background-color: rgba(13, 13, 13, 0.864);
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+#popup {
+    background-color: rgb(96 171 86);
+    color: floralwhite;
+    z-index: 11;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    top: 50%;
+    margin-top: -78px;
+}
+
+#popup p:first-child {
+    font-size: 32px;
+    font-weight: 800;
+}
+
+#gallery img {
+    width: 200px;
+    height: 200px;
+    margin: 2px;
+    border: 9px solid floralwhite;
+    cursor: move;
+}
+
+.drop-area {
+    border: 9px solid rgb(255, 245, 212)!important;
+}
