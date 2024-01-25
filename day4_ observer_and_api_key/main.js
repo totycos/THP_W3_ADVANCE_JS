@@ -31,29 +31,30 @@ function checkForm(event) {
 }
 
 
-// ###### API CALL #######
+// # API CALL MOVIE LIST #
 // #######################
 
 // Movie constante
 let movies = document.querySelectorAll('.movie')
 
 // Built request
-function builtReq(search) {
+// option : s = list of movies, i = single movie id
+// search : name of movie if s option, movie id if i option
+function builtReq(option, search) { 
     const formatValue = search.split(' ').join('+')
     const API_KEY = 'e5933a47'
-    const url = `https://www.omdbapi.com/?s=${formatValue}&plot=full&apikey=${API_KEY}`
+    const url = `https://www.omdbapi.com/?${option}=${formatValue}&plot=full&apikey=${API_KEY}`
     return new Request(url)
 }
 
 // Send request
 async function fetchData() {
     try {
-        const response = await fetch(builtReq(movie.value));
+        const response = await fetch(builtReq('s', movie.value));
         const data = await response.json();
-        console.log(data);
         // Generate movie templates
         data.Search.forEach((s) => {
-            showMovie(document.body.querySelector(".container"), s.Poster, s.Title, s.Year, s.Plot)
+            showMovie(document.body.querySelector(".container"), s.Poster, s.Title, s.Year, s.imdbID)
         })
         // Update movies variable
         movies = document.querySelectorAll('.movie')
@@ -67,19 +68,13 @@ async function fetchData() {
 }
 
 // Display info
-const showMovie = (element, poster, title, year, description) => {
+const showMovie = (element, poster, title, year, movieId) => {
     element.innerHTML += `
         <div class="movie">
             <img src="${poster}" alt="movie poster">
             <h2>${title}</h2>
             <p>Sortie : ${year}</p>
-            <button type="button" class="movieBtn">Read more</button>
-        </div>
-        <div class="movieModal">
-            <span class="close">&times;</span>
-            <h2>${title}</h2>
-            <p>Sortie : ${year}</p>
-            <p>${description}</p>
+            <button type="button"  data-imdbID="${movieId}" class="movieBtn">Read more</button>
         </div>
     `;
 }
@@ -89,7 +84,7 @@ const showMovie = (element, poster, title, year, description) => {
 // #######################
 
 function clearPage() {
-    var container = document.querySelector('.container');
+    const container = document.querySelector('.container');
 
     while (container.firstChild) {
         container.removeChild(container.firstChild);
@@ -119,32 +114,56 @@ const animateMovieOnScroll = (movie) => {
 }
 
 
-// ####### MODALS ########
+// #### API CALL MODAL ###
 // #######################
 
 const listenModal = () => {
-    var showModalButtons = document.querySelectorAll('.movieBtn');
-    var closeModalButtons = document.querySelectorAll('.close');
-    console.log(showModalButtons)
-    showModalButtons.forEach(function (button, index) {
+    const showModalButtons = document.querySelectorAll('.movieBtn');
+    const closeModalButton = document.getElementById('close');
+   
+    showModalButtons.forEach(function (button) {
         button.addEventListener('click', function () {
-            // Trouvez la modal correspondante en utilisant l'index
-            var modals = document.querySelectorAll('.movieModal');
-            var modalToShow = modals[index];
-    
-            modalToShow.classList.add('show');
+            const movieId = button.dataset.imdbid
+            fetchDataModal(movieId)
         });
     });
 
-    closeModalButtons.forEach(function (button, index) {
-        button.addEventListener('click', function () {
-            // Trouvez le close button correspondant en utilisant l'index
-            var modals = document.querySelectorAll('.movieModal');
-            var modalToShow = modals[index];
-    
-            modalToShow.classList.remove('show');
+    if (closeModalButton) {
+        closeModalButton.addEventListener('click', function () {
+            document.getElementById('movieModal').remove();
         });
-    });
+    }
 
 }
+
+// Send request
+async function fetchDataModal(id) {
+    try { 
+        const response = await fetch(builtReq("i", id));
+        const data = await response.json();
+        // Generate movie modal
+        showMovieModal(document.body.querySelector(".container"), data.Title, data.Year, data.Plot)
+        // Update movies variable
+        movies = document.querySelectorAll('.movie')
+        // Start Observer
+        animateMovieOnScroll(movies)
+        // Listen modal button
+        listenModal()
+    } catch (error) {
+        console.error('Erreur lors de la récupération des données:', error);
+    }
+}
+
+// Display info
+const showMovieModal = (element, title, year, description) => {
+    element.innerHTML += `
+        <div id="movieModal">
+            <span id="close">&times;</span>
+            <h2>${title}</h2>
+            <p>Sortie : ${year}</p>
+            <p>${description}</p>
+        </div>
+    `;
+}
+
 

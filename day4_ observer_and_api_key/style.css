@@ -60,28 +60,27 @@ button {
     cursor: pointer;
 }
 
-.movieModal {
+#movieModal {
     padding: 20px 40px 40px 40px;
     border: 2px solid black;
     border-radius: 10px;
     top: 50%;
     left: 50%;
-    display: none;
+    display: block;
     position: fixed;
     z-index: 10;
     width: 480px;
     margin: -230px -280px;
     overflow: auto;
-    background-color: rgb(255 255 255 / 80%);
-    /* background-color: rgba(0,0,0,0.4); */
+    background-color: rgb(255 255 255 / 90%);
     height: 400px;
   }
 
-  .movieModal.show {
+  #movieModal.show {
     display: block;
   }
 
-  .close {
+  #close {
     color: #000000;
     float: right;
     font-size: 28px;
