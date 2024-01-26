@@ -1,9 +1,12 @@
-$color-red: rgb(255, 20, 20);
+// Import all of Bootstrap's CSS
+@import "bootstrap/scss/bootstrap";
 
 @font-face {
   font-family: 'Montserrat';
   src: url('../assets/fonts/Montserrat-Italic-VariableFont_wght.ttf');
 }
+
+$color-red: rgb(255, 20, 20);
 
 body {
   background-image: url('../assets/images/goku-mange.jpg');

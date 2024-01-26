@@ -1,6 +1,8 @@
 // Webpack utilise ce module Node.js pour travailler avec les dossiers.
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const autoprefixer = require('autoprefixer')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 // Ceci est la configuration principale de ton projet.
 // Ici, tu peux écrire les différentes options que tu souhaites, et dire à Webpack quoi faire.
@@ -19,6 +21,11 @@ module.exports = {
     // L'URL relatif au HTML pour accéder aux assets de l'application. Ici,
     // le HTML est situé à la racine du projet, donc on met une chaîne vide.
     publicPath: '',
+  },
+  devServer: {
+    static: path.resolve(__dirname, 'dist'),
+    port: 8080,
+    hot: true
   },
   module: {
     rules: [
@@ -48,6 +55,13 @@ module.exports = {
             // Ensuite on utilise le loader de postCSS, qui ajoutera un minifier par exemple,
             // ou bien un préfixeur automatique des règles CSS (--moz par exemple)
             loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  autoprefixer
+                ]
+              }
+            }
           },
           {
             // En premier, on transforme le SASS en CSS :
@@ -72,6 +86,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'bundle.css',
     }),
+    new HtmlWebpackPlugin({ template: './index.html' }),
   ],
 
   // Par défaut, le mode de Webpack est "production". En fonction de ce qui est
