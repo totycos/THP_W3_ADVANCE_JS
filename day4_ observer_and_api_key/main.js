@@ -59,7 +59,7 @@ async function fetchData() {
         // Update movies variable
         movies = document.querySelectorAll('.movie')
         // Start Observer
-        animateMovieOnScroll(movies)
+        animateMovieOnScroll()
         // Listen modal button
         listenModal()
     } catch (error) {
@@ -95,7 +95,7 @@ function clearPage() {
 // ###### OBSERVER #######
 // #######################
 
-const animateMovieOnScroll = (movie) => {
+const animateMovieOnScroll = () => {
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             entry.target.classList.toggle("show", entry.isIntersecting)

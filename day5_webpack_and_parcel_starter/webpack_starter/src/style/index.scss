@@ -1,0 +1,15 @@
+$color-red: rgb(255, 20, 20);
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../assets/fonts/Montserrat-Italic-VariableFont_wght.ttf');
+}
+
+body {
+  background-image: url('../assets/images/goku-mange.jpg');
+}
+
+p {
+  color: $color-red;
+  font-family: 'Montserrat';
+}
