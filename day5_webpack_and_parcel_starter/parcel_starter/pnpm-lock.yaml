@@ -4,10 +4,18 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+dependencies:
+  dayjs:
+    specifier: ^1.11.10
+    version: 1.11.10
+
 devDependencies:
   '@parcel/transformer-sass':
     specifier: 2.11.0
     version: 2.11.0(@parcel/core@2.11.0)
+  clean:
+    specifier: rm -f dist/*
+    version: link:rm -f dist/*
   parcel:
     specifier: ^2.11.0
     version: 2.11.0
@@ -1309,6 +1317,10 @@ packages:
     dependencies:
       css-tree: 1.1.3
     dev: true
+
+  /dayjs@1.11.10:
+    resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==}
+    dev: false
 
   /detect-libc@1.0.3:
     resolution: {integrity: sha512-pGjwhsmsp4kL2RTz08wcOlGN83otlqHeD/Z5T8GXZB+/YcpQ/dgo+lbU8ZsGxV0HIvqqxo9l7mqYwyYMD9bKDg==}
